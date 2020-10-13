@@ -21,8 +21,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable UUID customerId){
-        return ResponseEntity.ok(this.customerService.getCustomer(customerId));
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable("customerId") UUID customerId){
+        return new ResponseEntity(this.customerService.getCustomer(customerId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class CustomerController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{customerid}")
+    @DeleteMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable("customerId") UUID customerId){customerService.deleteCustomer(customerId);}
 }
